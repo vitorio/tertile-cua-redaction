@@ -1,12 +1,12 @@
 # tertile-cua-redaction
 
-This is my submission for the Cua Global Online Hackthon, co-sponsored by Ollama: a hybrid agent using any cloud model, with local redaction of both screenshots and text from trajectories, using the new perceptive-language model Isaac 0.1 from Perceptron plus your choice of large language model through Ollama.
+This is my submission for [the Cua Global Online Hackthon, co-sponsored by Ollama](https://www.trycua.com/hackathon): a hybrid agent using any cloud model, with local redaction of both screenshots and text from trajectories, using [the new perceptive-language model Isaac 0.1 from Perceptron](https://www.perceptron.inc/blog/introducing-isaac-0-1) plus your choice of large language model through Ollama.
 
 ## Background
 
 ### Why redact trajectories?
 
-Last year, I worked on a conference demo called AI Doppelgangers, where we redacted humans from videos and replaced them with AI-generated avatars and voices.  The use case wasn't PII anonymization to keep sensitive data away from LLMs.  It was for long-term storage, to keep valuable user research and customer discovery recordings available to be mined by product teams, while staying compliant with biometric privacy laws, and de-risking in case of a leak or breach.  If the human in the video no longer has their appearance or voice, it's no longer their biometric, but we can still watch their behavior, learn from their activities, etc.
+Last year, I worked on [a conference demo called AI Doppelgangers](https://llewynpaine.consulting/avatars), where we redacted humans from videos and replaced them with AI-generated avatars and voices.  The use case wasn't PII anonymization to keep sensitive data away from LLMs.  It was for long-term storage, to keep valuable user research and customer discovery recordings available to be mined by product teams, while staying compliant with biometric privacy laws, and de-risking in case of a leak or breach.  If the human in the video no longer has their appearance or voice, it's no longer their biometric, but we can still watch their behavior, learn from their activities, etc.
 
 With the growth of agents, the same use case comes up.  Product teams want to understand how AI agents are performing against real-world tasks on their live web sites and internal applications, and those agents need to see real customer and user information in those tasks.  Trajectories can be useful for studying agent behavior, and comparing results across changed prompts or models, but they can also be a legal risk for the business.  A compromised agent server could turn up screenshots with PII in them, or agent responses with customer information written out in them.  If a customer files a deletion request under GDPR, and their customer data is tucked away, still visible in a trajectory from an agent run, that's a huge compliance and legal issue.
 
@@ -28,7 +28,7 @@ For the purposes of this demo, since I'm using the stock Cua `agent_examples.py`
 
 Ollama is prompted to redact the word "GitHub" as well as any URLs, which are frequently present in the returned text from the agent.
 
-There are also a couple of tests for applying Isaac in other ways.  You can use it as a grounding model for click tasks.  You can use it as the grounding model in a composed agent.  Both of those are in `isaac-composed-agent-perceptron-sdk.py`.  Isaac is based on Qwen3-1.7B, so it technically has tool-calling, and I got it to call Cua's computer tools, but in my experiments it wasn't really very good at planning.  Thats in `isaac-allinone-agent-huggingface.py`.
+There are also a couple of tests for applying Isaac in other ways.  You can use it as a grounding model for click tasks.  You can use it as the grounding model in a composed agent.  Both of those are in `isaac-composed-agent-perceptron-sdk.py`.  Isaac is based on Qwen3-1.7B, so it technically has tool-calling, and I got it to call Cua's computer tools, but in my experiments it wasn't really very good at planning.  That's in `isaac-allinone-agent-huggingface.py`.
 
 ## How to run it
 
