@@ -2,6 +2,8 @@
 
 This is my submission for [the Cua Global Online Hackthon, co-sponsored by Ollama](https://www.trycua.com/hackathon): a hybrid agent using any cloud model, with local redaction of both screenshots and text from trajectories, using [the new perceptive-language model Isaac 0.1 from Perceptron](https://www.perceptron.inc/blog/introducing-isaac-0-1) plus your choice of large language model through Ollama.
 
+[You can watch the required 2m submission video on YouTube.](https://www.youtube.com/watch?v=oZvxqUFNN90)
+
 ## Background
 
 ### Why redact trajectories?
