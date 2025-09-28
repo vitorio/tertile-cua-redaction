@@ -100,6 +100,26 @@ If you need to [connect to a Cua Docker image or host computer server on another
 
 If you see the error `WARNING:__main__:Redaction failed in on_screenshot (screenshot_after), writing original: USE_FLASH_ATTENTION was not enabled for build.` and don't have Isaac getting loaded and redacting images, you can [monkeypatch out the use of flash attention](https://github.com/perceptron-ai-inc/perceptron/issues/5) by specifying `--no-flash-attention` on the command-line.
 
+If you want to try different prompts for Isaac or Ollama, or change the model Ollama is using, you can edit the code starting on line 49, or use the equivalent environment variables:
+
+```python
+# Single, static prompts to use for the entire run (can override via env)
+REDACTION_IMAGE_PROMPT = os.getenv(
+    "REDACTION_IMAGE_PROMPT",
+    "<hint>BBOX</hint> Identify and outline the various icons visible on the desktop."
+)
+REDACTION_TEXT_PROMPT = os.getenv(
+    "REDACTION_TEXT_PROMPT",
+    "What follows is text returned from an LLM.  Replace any instances of the word 'GitHub' or any URLs with '[REDACTED]'. Make no other changes."
+)
+
+# Hugging Face model repo (override via env if needed)
+HF_ISAAC_PATH = os.getenv("PERC_HF_PATH", "PerceptronAI/Isaac-0.1")
+
+# Choose the Ollama model:tag once (override via env OLLAMA_MODEL)
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "gemma3:4b")  # example: "gemma3:8b", "llama3:latest"
+```
+
 ## Thanks!
 
 I look forward to talking about further experiments with Isaac soon, and if you need someone to dive deep into a technology like perceptive-language models for physical world agents, and research your customer use cases for it, prototype with it, or train you on it, you can find me at https://tertile.one
