@@ -34,9 +34,11 @@ There are also a couple of tests for applying Isaac in other ways.  You can use 
 
 ## How to run it
 
-You can swap out Isaac's prompt, Ollama's prompt, or Ollama's model by either changing the code or setting some environment variables.
+I'm using the local implementation of Isaac because at the time I wrote this, there was an overbilling issue with Perceptron's hosting partner, Features and Labels.  It's since been resolved!  But for this agent, make sure you have at least 10GB of disk space free to download the Isaac model.
 
-I'm using the local implementation of Isaac because there seems to be an overbilling issue with Perceptron's hosting partner, Features and Labels.  Hopefully that'll get resolved soon, but I can't recommend you try it there until it's fixed, unless you can cover 2,500x the per-token rate. 😬  Because of this, make sure you have at least 10GB of disk space free to download the Isaac model.
+Make sure Ollama is installed and running, with a model downloaded.  My Ollama install defaulted to Gemma3-4B, so that's what this agent uses.
+
+You can swap out Isaac's prompt, Ollama's prompt, or Ollama's model by either changing the code or setting some environment variables.  See instructions at the end.
 
 Create a new Python virtual environment, and install the dependencies:
 
