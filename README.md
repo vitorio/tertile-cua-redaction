@@ -1,8 +1,14 @@
 # tertile-cua-redaction
 
-This is my submission for [the Cua Global Online Hackthon, co-sponsored by Ollama](https://www.trycua.com/hackathon): a hybrid agent using any cloud model, with local redaction of both screenshots and text from trajectories, using [the new perceptive-language model Isaac 0.1 from Perceptron](https://www.perceptron.inc/blog/introducing-isaac-0-1) plus your choice of large language model through Ollama.
+This was my submission for [the Cua Global Online Hackthon, co-sponsored by Ollama](https://www.trycua.com/hackathon): a hybrid agent using any cloud model, with local redaction of both screenshots and text from trajectories, using [the new perceptive-language model Isaac 0.1 from Perceptron](https://www.perceptron.inc/blog/introducing-isaac-0-1) plus your choice of large language model through Ollama.
 
 [You can watch the required 2m submission video on YouTube.](https://www.youtube.com/watch?v=oZvxqUFNN90)
+
+## Second place!
+
+![screenshot](https://github.com/user-attachments/assets/59b3a913-df5e-45ee-b4ef-1cdaf93945f4)
+
+This won second place in the hackathon!
 
 ## Background
 
@@ -36,6 +42,9 @@ There are also a couple of tests for applying Isaac in other ways.  You can use 
 
 I'm using the local implementation of Isaac because at the time I wrote this, there was an overbilling issue with Perceptron's hosting partner, Features and Labels.  It's since been resolved!  But for this agent, make sure you have at least 10GB of disk space free to download the Isaac model.
 
+> [!TIP]
+> Perceptron now has their own platform API, as well as the one offered by Features and Labels.
+
 Make sure Ollama is installed and running, with a model downloaded.  My Ollama install defaulted to Gemma3-4B, so that's what this agent uses.
 
 You can swap out Isaac's prompt, Ollama's prompt, or Ollama's model by either changing the code or setting some environment variables.  See instructions at the end.
@@ -48,6 +57,9 @@ uv venv --python 3.12
 uv pip install torch --torch-backend=auto
 uv pip install "cua-agent[all]" cua-computer perceptron hf-xet ollama
 ```
+
+> [!TIP]
+> Both Cua and Perceptron have advanced since the hackathon; you probably want to specify `cua-agent[all]==0.4.31` or `cua-agent[all]==0.4.32`, `cua-computer==0.4.6` or `cua-computer==0.4.7`, and `perceptron==0.1.1`, which were the versions I developed with, along with `hf_xet==1.1.10` and `ollama==0.6.0`.
 
 Then, set up your `agent_examples.py`.  You need to define your Cua computer to start, that's on line 550:
 
@@ -104,6 +116,9 @@ If you need to [connect to a Cua Docker image or host computer server on another
 
 If you see the error `WARNING:__main__:Redaction failed in on_screenshot (screenshot_after), writing original: USE_FLASH_ATTENTION was not enabled for build.` and don't have Isaac getting loaded and redacting images, you can [monkeypatch out the use of flash attention](https://github.com/perceptron-ai-inc/perceptron/issues/5) by specifying `--no-flash-attention` on the command-line.
 
+> [!TIP]
+> Newer builds of the Perceptron SDK should have added their own non-flash attention implementation!
+
 If you want to try different prompts for Isaac or Ollama, or change the model Ollama is using, you can edit the code starting on line 49, or use the equivalent environment variables:
 
 ```python
@@ -123,6 +138,9 @@ HF_ISAAC_PATH = os.getenv("PERC_HF_PATH", "PerceptronAI/Isaac-0.1")
 # Choose the Ollama model:tag once (override via env OLLAMA_MODEL)
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "gemma3:4b")  # example: "gemma3:8b", "llama3:latest"
 ```
+
+> [!TIP]
+> Newer Perceptron SDKs also support their new Isaac 0.2 model!
 
 ## Thanks!
 
