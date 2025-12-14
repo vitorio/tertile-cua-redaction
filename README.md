@@ -38,6 +38,9 @@ Ollama is prompted to redact the word "GitHub" as well as any URLs, which are fr
 
 There are also a couple of tests for applying Isaac in other ways.  You can use it as a grounding model for click tasks.  You can use it as the grounding model in a composed agent.  Both of those are in `isaac-composed-agent-perceptron-sdk.py`.  Isaac is based on Qwen3-1.7B, so it technically has tool-calling, and I got it to call Cua's computer tools, but in my experiments it wasn't really very good at planning.  That's in `isaac-allinone-agent-huggingface.py`.
 
+> [!TIP]
+> Perceptron's updated Isaac 0.2 model has a native tool-calling implementation!
+
 ## How to run it
 
 I'm using the local implementation of Isaac because at the time I wrote this, there was an overbilling issue with Perceptron's hosting partner, Features and Labels.  It's since been resolved!  But for this agent, make sure you have at least 10GB of disk space free to download the Isaac model.
